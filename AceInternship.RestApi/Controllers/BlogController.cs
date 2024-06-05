@@ -12,25 +12,29 @@ namespace AceInternship.RestApi.Controllers
         {
             return Ok("GetBlogs");
         }
+
         [HttpPost]
         public IActionResult CreateBlog()
         {
             return Ok("CreateBlog");
         }
+
         [HttpPut]
         public IActionResult UpdateBlog()
         {
             return Ok("UpdateBlog");
         }
+
         [HttpPatch]
         public IActionResult PatchBlog()
         {
             return Ok("PatchBlog");
         }
+
         [HttpDelete]
         public IActionResult DeleteBlog()
         {
             return Ok("DeleteBlog");
         }
     }
-    }
+}
