@@ -1,6 +1,7 @@
 const tblBlog = "blogs";
 let blogId = null;
 getBlogTable();
+
 //createBlog();
 //updatBlog("c08155b1-ca33-42fa-80d0-42c595c99a77","Love","You","So match");
 //deleteBlog("c08155b1-ca33-42fa-80d0-42c595c99a77");
