@@ -17,7 +17,7 @@ namespace AceInternship.MiniKPayWebApi.Features.TransactionHistory
         [HttpPost]
         public IActionResult TransactionHistory (TransactionHistoryRequestModel requestModel)
         {
-            try
+            try  
             {
                 if (string.IsNullOrEmpty(requestModel.CustomerCode))
                 {

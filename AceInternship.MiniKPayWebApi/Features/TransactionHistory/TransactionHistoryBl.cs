@@ -19,7 +19,7 @@
                 model.IsSuccess = false;
                 model.msg = "Customer Doesn't exist.";
                 return model;
-            }
+            }  
             //Transaction History By Customer Code
             var lst=_transactionHistoryDA.TransactionHistoryByCustomerCode(requestModel.CustomerCode);  
             model.IsSuccess = true;
