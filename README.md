@@ -14,3 +14,5 @@ C#=>Db
 2024-06-19 =EFCore
 Code First
 Database First  -thone mal
+
+2024-06-19 =Dapper
