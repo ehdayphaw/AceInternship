@@ -14,7 +14,8 @@ namespace AceInternship.ConsoleApp
             DataSource = ".",
             InitialCatalog = "AceInternship",
             UserID = "sa",
-            Password = "edp@123"
+            Password = "edp@123",
+            TrustServerCertificate =true
         };
 
     }

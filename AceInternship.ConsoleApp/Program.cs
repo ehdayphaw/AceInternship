@@ -13,7 +13,9 @@ AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
 //adoDotNetExample.Delete(38);
 //adoDotNetExample.Edit(39);
 
-DapperExample dapper = new DapperExample();
-dapper.Run();
+/*DapperExample dapper = new DapperExample();
+dapper.Run();*/
+EFCoreExample efcore = new EFCoreExample();
+efcore.Run();
 
 Console.ReadKey();
