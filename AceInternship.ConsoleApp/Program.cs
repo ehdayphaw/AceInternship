@@ -10,6 +10,7 @@ AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
 
 //adoDotNetExample.Create("eheh", "day", "phaw");
 //adoDotNetExample.Update(38, "pyoneplay", "Eh", "pyone nay lite");
-adoDotNetExample.Delete(38);
+//adoDotNetExample.Delete(38);
+adoDotNetExample.Edit(39);
 
 Console.ReadKey();

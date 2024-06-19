@@ -87,10 +87,38 @@ namespace AceInternship.ConsoleApp
             command.Parameters.AddWithValue("@BlogId",id);
             int result=command.ExecuteNonQuery();
             connection.Close();
-            string msg = result > 0 ? "Delete Success" : " Fail";
+            string msg = result > 0 ? "Delete Success" : "Delete Fail";
 
             Console.WriteLine(msg);
 
+        }
+
+        public void Edit(int id)
+        {
+            SqlConnection connection = new SqlConnection(_connectionStringBuilder.ConnectionString);
+            connection.Open();
+            string query = "select * from Tbl_Blog where BlogId=@BlogId";
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@BlogId", id);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            DataTable tbl = new DataTable();
+            adapter.Fill(tbl);
+
+            connection.Close();
+
+            if(tbl.Rows.Count == 0)
+            {
+                Console.WriteLine("No data Found.");
+                return;
+            }
+            DataRow dr = tbl.Rows[0];
+           
+                Console.WriteLine("BlogId :" + dr["BlogId"]);
+                Console.WriteLine("BlogTitle :" + dr["BlogTitle"]);
+                Console.WriteLine("BlogAuthor :" + dr["BlogAuthor"]);
+                Console.WriteLine("BlogContent :" + dr["BlogContent"]);
+                Console.WriteLine("-------------------------------");
+            
         }
     }
 }

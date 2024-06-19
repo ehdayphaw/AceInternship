@@ -10,7 +10,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AceInternship.ConsoleApp", "AceInternship.ConsoleApp\AceInternship.ConsoleApp.csproj", "{5BD77329-6E2A-49C2-A75C-9A15492BF3CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceInternship.ConsoleApp", "AceInternship.ConsoleApp\AceInternship.ConsoleApp.csproj", "{5BD77329-6E2A-49C2-A75C-9A15492BF3CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AceInternship.MiniKPayWebApi", "AceInternship.MiniKPayWebApi\AceInternship.MiniKPayWebApi.csproj", "{F75BE1EB-8FF8-456E-AEEB-F465089E32B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +28,10 @@ Global
 		{5BD77329-6E2A-49C2-A75C-9A15492BF3CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BD77329-6E2A-49C2-A75C-9A15492BF3CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BD77329-6E2A-49C2-A75C-9A15492BF3CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F75BE1EB-8FF8-456E-AEEB-F465089E32B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F75BE1EB-8FF8-456E-AEEB-F465089E32B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F75BE1EB-8FF8-456E-AEEB-F465089E32B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F75BE1EB-8FF8-456E-AEEB-F465089E32B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
