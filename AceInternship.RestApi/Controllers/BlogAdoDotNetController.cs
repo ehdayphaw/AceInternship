@@ -43,6 +43,7 @@ namespace AceInternship.RestApi.Controllers
             return Ok(lst);
             
         }
+
         [HttpGet("{id}")]
         public IActionResult GetBlog(int id)
         {
@@ -70,6 +71,7 @@ namespace AceInternship.RestApi.Controllers
             }
             return Ok(tbl);
         }
+
         [HttpPost]
         public IActionResult CreateBlogs(BlogModel model)
         {
@@ -87,6 +89,7 @@ namespace AceInternship.RestApi.Controllers
             string msg = result > 0 ? "Create Success" : "Create Fail";
             return Ok(msg);
         }
+
         [HttpPut("{id}")]
         public IActionResult UpdateBlogs(int id,BlogModel model)
         {
@@ -115,6 +118,5 @@ namespace AceInternship.RestApi.Controllers
             string msg = result > 0 ? "Update Success" : "Update Fail";
             return Ok(msg);
         }
-
     }
 }
