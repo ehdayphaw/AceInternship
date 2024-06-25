@@ -73,7 +73,7 @@ namespace AceInternship.RestApi.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateBlogs(BlogModel model)
+        public IActionResult CreateBlog(BlogModel model)
         {
             string query = @"INSERT INTO [dbo].[Tbl_Blog]([BlogTitle],[BlogAuthor],[BlogContent]) VALUES(@BlogTitle,@BlogAuthor,@BlogContent)";
             SqlConnection connection = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
