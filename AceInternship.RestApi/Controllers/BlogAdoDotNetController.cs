@@ -91,7 +91,7 @@ namespace AceInternship.RestApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateBlogs(int id,BlogModel model)
+        public IActionResult UpdateBlog(int id,BlogModel model)
         {
             string isExist = "Select * From Tbl_Blog where BlogId = @BlogId";
             string query = @"UPDATE [dbo].[Tbl_Blog]SET BlogTitle=@BlogTitle,BlogAuthor=@BlogAuthor,BlogContent=@BlogContent WHERE BlogId =@BlogId";
