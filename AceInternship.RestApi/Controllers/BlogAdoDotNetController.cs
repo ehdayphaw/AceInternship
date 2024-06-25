@@ -97,21 +97,37 @@ namespace AceInternship.RestApi.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateBlog(int id, BlogModel model)
         {
-            string isExist = "Select * From Tbl_Blog where BlogId = @BlogId";
-            string query = @"UPDATE [dbo].[Tbl_Blog]SET BlogTitle=@BlogTitle,BlogAuthor=@BlogAuthor,BlogContent=@BlogContent WHERE BlogId =@BlogId";
+            //string isExist = "Select * From Tbl_Blog where BlogId = @BlogId";
+            //string query = @"UPDATE [dbo].[Tbl_Blog]SET BlogTitle=@BlogTitle,BlogAuthor=@BlogAuthor,BlogContent=@BlogContent WHERE BlogId =@BlogId";
+
+            //SqlConnection connection = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+            //connection.Open();
+            //SqlCommand check = new SqlCommand(isExist, connection);
+            //check.Parameters.AddWithValue("@BlogId", id);
+            //SqlDataAdapter adapter = new SqlDataAdapter(check);
+            //DataTable tbl = new DataTable();
+            //adapter.Fill(tbl);
+            //if (tbl.Rows.Count == 0)
+            //{
+            //    return NotFound("No data found.");
+            //}
+
+            //SqlCommand cmd = new SqlCommand(query, connection);
+            //cmd.Parameters.AddWithValue("@BlogId", id);
+            //cmd.Parameters.AddWithValue("@BlogTitle", model.BlogTitle);
+            //cmd.Parameters.AddWithValue("@BlogAuthor", model.BlogTitle);
+            //cmd.Parameters.AddWithValue("@BlogContent", model.BlogContent);
+            //int result = cmd.ExecuteNonQuery();
+            //connection.Close();
+            //string msg = result > 0 ? "Update Success" : "Update Fail";
+            //return Ok(msg);
+
+            var item = GetById(id);
+            if (item is null) return NotFound("No data found.");
+
+            string query = @"UPDATE [dbo].[Tbl_Blog] SET BlogTitle=@BlogTitle,BlogAuthor=@BlogAuthor,BlogContent=@BlogContent WHERE BlogId =@BlogId";
 
             SqlConnection connection = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
-            connection.Open();
-            SqlCommand check = new SqlCommand(isExist, connection);
-            check.Parameters.AddWithValue("@BlogId", id);
-            SqlDataAdapter adapter = new SqlDataAdapter(check);
-            DataTable tbl = new DataTable();
-            adapter.Fill(tbl);
-            if (tbl.Rows.Count == 0)
-            {
-                return NotFound("No data found.");
-            }
-
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@BlogId", id);
             cmd.Parameters.AddWithValue("@BlogTitle", model.BlogTitle);
@@ -120,6 +136,7 @@ namespace AceInternship.RestApi.Controllers
             int result = cmd.ExecuteNonQuery();
             connection.Close();
             string msg = result > 0 ? "Update Success" : "Update Fail";
+
             return Ok(msg);
         }
 
