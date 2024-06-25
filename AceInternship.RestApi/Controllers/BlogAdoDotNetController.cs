@@ -1,4 +1,5 @@
 ﻿using AceInternship.RestApi.Models;
+using Dapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
@@ -46,29 +47,12 @@ namespace AceInternship.RestApi.Controllers
         [HttpGet("{id}")]
         public IActionResult GetBlog(int id)
         {
-            string query = "select * from Tbl_Blog where BlogId=@BlogId";
-            SqlConnection connection = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
-            connection.Open();
-            SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@BlogId", id);
-            SqlDataAdapter adapter = new SqlDataAdapter(command);
-            DataTable tbl = new DataTable();
-            adapter.Fill(tbl);
-
-            connection.Close();
-            DataRow dr=tbl.Rows[0];
-            var item = new BlogModel
-            {
-                BlogId = Convert.ToInt32(dr["BlogId"]),
-                BlogTitle = Convert.ToString(dr["BlogTitle"]),
-                BlogAuthor = Convert.ToString(dr["BlogAuthor"]),
-                BlogContent = Convert.ToString(dr["BlogContent"])
-            };
-            if (tbl.Rows.Count == 0)
+            var item=FindById(id);
+            if(item == null)
             {
                 return NotFound("No data found.");
             }
-            return Ok(tbl);
+            return Ok(item);
         }
         [HttpPost]
         public IActionResult CreateBlogs(BlogModel model)
@@ -90,30 +74,116 @@ namespace AceInternship.RestApi.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateBlogs(int id,BlogModel model)
         {
-            string isExist = "Select * From Tbl_Blog where BlogId = @BlogId";
+
+            var checkId = FindById(id);
+            if (checkId == null)
+                return NotFound("No data found.");
+
             string query = @"UPDATE [dbo].[Tbl_Blog]SET BlogTitle=@BlogTitle,BlogAuthor=@BlogAuthor,BlogContent=@BlogContent WHERE BlogId =@BlogId";
             
             SqlConnection connection = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
             connection.Open();
-            SqlCommand check=new SqlCommand(isExist, connection);
-            check.Parameters.AddWithValue("@BlogId", id);
-            SqlDataAdapter adapter = new SqlDataAdapter(check);
-            DataTable tbl = new DataTable();
-            adapter.Fill(tbl);
-            if (tbl.Rows.Count == 0)
-            {
-                return NotFound("No data found.");
-            }
-
+         
             SqlCommand cmd = new SqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@BlogId", id);
             cmd.Parameters.AddWithValue("@BlogTitle", model.BlogTitle);
-            cmd.Parameters.AddWithValue("@BlogAuthor", model.BlogTitle);
+            cmd.Parameters.AddWithValue("@BlogAuthor", model.BlogAuthor);
             cmd.Parameters.AddWithValue("@BlogContent", model.BlogContent);
             int result = cmd.ExecuteNonQuery();
             connection.Close();
             string msg = result > 0 ? "Update Success" : "Update Fail";
             return Ok(msg);
+        }
+        [HttpPatch("{id}")]
+        public IActionResult PatchBlogs(int id,BlogModel model)
+        {
+            var checkId = FindById(id);
+            if (checkId == null)
+                return NotFound("No data found.");
+            string conditions = string.Empty;
+            if (!string.IsNullOrEmpty(model.BlogTitle))
+            {
+                conditions += "BlogTitle=@BlogTitle";
+            }
+            if (!string.IsNullOrEmpty(model.BlogAuthor))
+            {
+                conditions += "BlogAuthor=@BlogAuthor";
+            }
+            if (!string.IsNullOrEmpty(model.BlogContent))
+            {
+                conditions += "BlogContent=@BlogContent";
+            }
+            if (conditions.Length == 0)
+            {
+                return NotFound("No Data to Update.");
+            }
+            string condition = string.Join(",", conditions);
+            model.BlogId = id;
+            string query = $@"UPDATE [dbo].[Tbl_Blog] SET {condition} WHERE BlogId =@BlogId";
+            SqlConnection connection = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+            connection.Open();
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@BlogId", id);
+            if (!string.IsNullOrEmpty(model.BlogTitle))
+            {
+               cmd.Parameters.AddWithValue("@BlogTitle", model.BlogTitle);
+            }
+            if (!string.IsNullOrEmpty(model.BlogAuthor))
+            {
+                cmd.Parameters.AddWithValue("@BlogAuthor", model.BlogAuthor);
+            }
+            if (!string.IsNullOrEmpty(model.BlogContent))
+            {
+                cmd.Parameters.AddWithValue("@BlogContent", model.BlogContent);
+            }
+            
+            int result = cmd.ExecuteNonQuery();
+            connection.Close();
+            string msg = result > 0 ? "Patch Success" : "Patch Fail";
+            return Ok(msg);
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteBlog(int id)
+        {
+            var checkId = FindById(id);
+            if (checkId == null)
+                return NotFound("No data found.");
+           
+            string query = @"DELETE FROM [dbo].[Tbl_Blog]
+      WHERE BlogId =@BlogId";
+            SqlConnection connection = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+            connection.Open();
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@BlogId", id);
+            int result = command.ExecuteNonQuery();
+            connection.Close();
+            string msg = result > 0 ? "Delete Success" : "Delete Fail";
+            return Ok(msg);
+        }
+
+        private BlogModel? FindById(int id)
+        {
+            string query = "select * from Tbl_Blog where BlogId=@BlogId";
+            SqlConnection connection = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
+            connection.Open();
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@BlogId", id);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            DataTable tbl = new DataTable();
+            adapter.Fill(tbl);
+
+            connection.Close();
+            DataRow dr = tbl.Rows[0];
+            var item = new BlogModel
+            {
+                BlogId = Convert.ToInt32(dr["BlogId"]),
+                BlogTitle = Convert.ToString(dr["BlogTitle"]),
+                BlogAuthor = Convert.ToString(dr["BlogAuthor"]),
+                BlogContent = Convert.ToString(dr["BlogContent"])
+            };
+            return item;
+            
         }
 
     }
