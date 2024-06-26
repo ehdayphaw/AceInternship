@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AceInternship.shared\AceInternship.shared.csproj" />
+    <ProjectReference Include="..\AceInternship.share\AceInternship.share.csproj" />
   </ItemGroup>
 
 </Project>

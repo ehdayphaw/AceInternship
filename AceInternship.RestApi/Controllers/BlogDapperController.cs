@@ -30,7 +30,7 @@ namespace AceInternship.RestApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetBlog(int id,BlogModel model)
+        public IActionResult GetBlog(int id)
         {
             var item=FindById(id);
             if (item is null)

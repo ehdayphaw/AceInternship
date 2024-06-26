@@ -1,11 +1,9 @@
 ﻿using AceInternship.RestApi.Models;
-using AceInternship.shared;
+using AceInternship.share;
 using Dapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.Data.SqlClient;
-using System.Security.AccessControl;
 
 namespace AceInternship.RestApi.Controllers
 {
@@ -14,11 +12,6 @@ namespace AceInternship.RestApi.Controllers
     public class BlogDapper2Controller : ControllerBase
     {
         private readonly DapperService _dapperService = new DapperService(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
-
-        public BlogDapper2Controller(DapperService dapperService)
-        {
-            _dapperService = dapperService;
-        }
 
         [HttpGet]
         public IActionResult GetBlogs()
@@ -35,11 +28,10 @@ namespace AceInternship.RestApi.Controllers
             }
             return Ok(lst);
         }
-
         [HttpGet("{id}")]
-        public IActionResult GetBlog(int id,BlogModel model)
+        public IActionResult GetBlog(int id)
         {
-            var item=FindById(id);
+            var item = FindById(id);
             if (item is null)
             {
                 return NotFound("Data not found.");
@@ -55,16 +47,16 @@ namespace AceInternship.RestApi.Controllers
         [HttpPost]
         public IActionResult CreateBlogs(BlogModel model)
         {
-            string query= @"INSERT INTO [dbo].[Tbl_Blog]([BlogTitle],[BlogAuthor],[BlogContent])
+            string query = @"INSERT INTO [dbo].[Tbl_Blog]([BlogTitle],[BlogAuthor],[BlogContent])
                             VALUES(@BlogTitle,@BlogAuthor,@BlogContent)";
-          
+
             int result = _dapperService.Execute(query, model);
             string msg = result > 0 ? "Create Success" : "Create Fail";
             return Ok(msg);
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateBlogs(int id,BlogModel model)
+        public IActionResult UpdateBlogs(int id, BlogModel model)
         {
             var item = FindById(id);
             if (item is null)
@@ -73,20 +65,20 @@ namespace AceInternship.RestApi.Controllers
             }
             model.BlogId = id;
             string query = @"UPDATE [dbo].[Tbl_Blog]SET BlogTitle=@BlogTitle,BlogAuthor=@BlogAuthor,BlogContent=@BlogContent WHERE BlogId =@BlogId";
-            int result =_dapperService.Execute(query, model);
+            int result = _dapperService.Execute(query, model);
             string msg = result > 0 ? "Update Success" : "Update Fail";
             return Ok(msg);
         }
 
         [HttpPatch("{id}")]
-        public IActionResult PatchBlogs(int id,BlogModel model)
+        public IActionResult PatchBlogs(int id, BlogModel model)
         {
             var item = FindById(id);
             if (item is null)
             {
                 return NotFound("Data not found.");
             }
-            string conditions=string.Empty;
+            string conditions = string.Empty;
             if (!string.IsNullOrEmpty(model.BlogTitle))
             {
                 conditions += "BlogTitle=@BlogTitle";
@@ -99,14 +91,14 @@ namespace AceInternship.RestApi.Controllers
             {
                 conditions += "BlogContent=@BlogContent";
             }
-            if(conditions.Length == 0)
+            if (conditions.Length == 0)
             {
                 return NotFound("No Data to Update.");
             }
             //conditions=conditions.Substring(0,conditions.Length-2); if put comma and space after  conditions += "BlogTitle=@BlogTitle, ";
-            string condition =string.Join(",", conditions);
+            string condition = string.Join(",", conditions);
             model.BlogId = id;
-            string query= $@"UPDATE [dbo].[Tbl_Blog]SET {condition} WHERE BlogId =@BlogId";
+            string query = $@"UPDATE [dbo].[Tbl_Blog]SET {condition} WHERE BlogId =@BlogId";
             int result = _dapperService.Execute(query, model);
             string msg = result > 0 ? "Patch Success" : "Patch Fail";
             return Ok(msg);
@@ -120,7 +112,6 @@ namespace AceInternship.RestApi.Controllers
             {
                 return NotFound("Data not found.");
             }
-            using IDbConnection db = new SqlConnection(ConnectionStrings.SqlConnectionStringBuilder.ConnectionString);
             string query = @"DELETE FROM [dbo].[Tbl_Blog]
             WHERE BlogId =@BlogId";
             int result = _dapperService.Execute(query, new BlogModel { BlogId = id });
@@ -130,8 +121,10 @@ namespace AceInternship.RestApi.Controllers
         private BlogModel? FindById(int id)
         {
             string query = "Select * From Tbl_Blog where BlogId = @BlogId";
-            var item=_dapperService.QueryFirstOrDefault<BlogModel>(query, new BlogModel { BlogId = id });
+            var item = _dapperService.QueryFirstOrDefault<BlogModel>(query, new BlogModel { BlogId = id });
             return item;
         }
+
+
     }
 }
