@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AceInternship.MiniKPayWebApi\AceInternship.MiniKPayWebApi.csproj" />
+    <ProjectReference Include="..\AceInternship.shared\AceInternship.shared.csproj" />
   </ItemGroup>
 
 </Project>
