@@ -14,7 +14,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceInternship.ConsoleApp", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceInternship.MiniKPayWebApi", "AceInternship.MiniKPayWebApi\AceInternship.MiniKPayWebApi.csproj", "{F75BE1EB-8FF8-456E-AEEB-F465089E32B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AceInternship.share", "AceInternship.share\AceInternship.share.csproj", "{EDCC73A8-7C8C-4541-96F4-03102CBC8D95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceInternship.share", "AceInternship.share\AceInternship.share.csproj", "{EDCC73A8-7C8C-4541-96F4-03102CBC8D95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AceInternship.RestApiWithNLayer", "AceInternship.RestApiWithNLayer\AceInternship.RestApiWithNLayer.csproj", "{4D46C7F3-8CD5-437D-9A40-F28F644B31A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{EDCC73A8-7C8C-4541-96F4-03102CBC8D95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDCC73A8-7C8C-4541-96F4-03102CBC8D95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDCC73A8-7C8C-4541-96F4-03102CBC8D95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D46C7F3-8CD5-437D-9A40-F28F644B31A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D46C7F3-8CD5-437D-9A40-F28F644B31A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D46C7F3-8CD5-437D-9A40-F28F644B31A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D46C7F3-8CD5-437D-9A40-F28F644B31A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
