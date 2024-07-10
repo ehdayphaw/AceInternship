@@ -28,6 +28,15 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Index">Blog</a>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Apex Chart
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/ApexChart/PieChart">Pie Chart</a></li>
+                              
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -49,6 +58,7 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     @await RenderSectionAsync("scripts", required: false)
 </body>
 </html>
