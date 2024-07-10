@@ -52,7 +52,7 @@ namespace AceInternship.RestApiWithNLayer.Features.Blog
             return Ok(msg);
         }
 
-       
+      
 
         [HttpDelete]
         public IActionResult Delete(int id)

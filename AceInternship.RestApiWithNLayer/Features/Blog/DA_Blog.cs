@@ -1,4 +1,4 @@
-﻿using AceInternship.RestApiWithNLayer.Db;
+﻿ using AceInternship.RestApiWithNLayer.Db;
 
 namespace AceInternship.RestApiWithNLayer.Features.Blog
 {
@@ -30,12 +30,9 @@ namespace AceInternship.RestApiWithNLayer.Features.Blog
         {
             var item = _context.Blogs.FirstOrDefault(x => x.BlogId == id);
             if(item is null) return 0;
-
-
             item.BlogTitle = requestModel.BlogTitle;
             item.BlogAuthor = requestModel.BlogAuthor;
             item.BlogContent = requestModel.BlogContent;
-
             int result = _context.SaveChanges();
             return result;
 
@@ -43,9 +40,7 @@ namespace AceInternship.RestApiWithNLayer.Features.Blog
         public int DeleteBlog(int id) 
         {
             var item = _context.Blogs.FirstOrDefault(x => x.BlogId == id);
-
             if(item is null) return 0;
-
             _context.Blogs.Remove(item);
             int result =_context.SaveChanges();
             return result;
