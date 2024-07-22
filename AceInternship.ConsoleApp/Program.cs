@@ -16,6 +16,7 @@ AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
 /*DapperExample dapper = new DapperExample();
 dapper.Run();*/
 EFCoreExample efcore = new EFCoreExample();
-efcore.Run();
+efcore.Generate(391);
+/*efcore.Run();*/
 
 Console.ReadKey();

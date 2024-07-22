@@ -24,6 +24,26 @@ public class BlogController : ControllerBase
       
         return Ok(lst);
     }
+    [HttpGet("pageNo/{pageNo}/pageSize/{pageSize}")]
+    public IActionResult Reads(int pageNo,int pageSize)
+    {
+        var lst = _context.Blogs
+            .OrderByDescending(x => x.BlogId)
+            .Skip((pageNo - 1) * pageSize)
+            .Take(pageSize) 
+            .ToList();
+
+        int rowCount = _context.Blogs.Count();
+        int pageCount =rowCount/pageSize;
+        if (rowCount % pageSize > 0)
+            pageCount++;
+
+        BlogResponseModel model = new();
+        model.PageNo = pageNo;
+        model.PageSize = pageSize;
+        model.PageCount = pageCount;
+        return Ok(model);
+    }
 
     [HttpGet("{id}")]
     public IActionResult Edit(int id)

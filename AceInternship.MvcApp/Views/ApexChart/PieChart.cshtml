@@ -1,6 +1,9 @@
-﻿@{
-    List<int> _series = new List<int> { 44, 55, 13, 43, 22 };
-    List<string> _labels = new List<string> { "Team A", "Team B", "Team C", "Team D", "Team E" };
+﻿@model ApexChartPieChartResponseModel
+@{
+    //List<int> _series = new List<int> { 44, 55, 13, 43, 22 };
+    //List<string> _labels = new List<string> { "Team A", "Team B", "Team C", "Team D", "Team E" };
+    List<int> _series = Model.Series;
+    List<string> _labels = Model.Lables;
 }
 <div id="chart"></div>
 
