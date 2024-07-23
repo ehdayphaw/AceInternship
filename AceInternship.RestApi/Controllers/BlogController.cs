@@ -42,7 +42,7 @@ public class BlogController : ControllerBase
         model.PageNo = pageNo;
         model.PageSize = pageSize;
         model.PageCount = pageCount;
-        return Ok(model);
+        return Ok(model);  
     }
 
     [HttpGet("{id}")]

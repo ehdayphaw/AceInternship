@@ -20,7 +20,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceInternship.RestApiWithNL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceInternship.ConsoleAppHttpClient", "AceInternship.ConsoleAppHttpClient\AceInternship.ConsoleAppHttpClient.csproj", "{2C1B1C06-8E2B-4069-8095-6F96E5026DDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AceInternship.MvcApp", "AceInternship.MvcApp\AceInternship.MvcApp.csproj", "{CC6298D2-8658-4FE0-ACD4-86BB2C1517B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceInternship.MvcApp", "AceInternship.MvcApp\AceInternship.MvcApp.csproj", "{CC6298D2-8658-4FE0-ACD4-86BB2C1517B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AceInternship.ChatApp", "AceInternship.ChatApp\AceInternship.ChatApp.csproj", "{C352C548-6FF6-4665-98FC-3F71D32DEC17}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,6 +58,10 @@ Global
 		{CC6298D2-8658-4FE0-ACD4-86BB2C1517B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC6298D2-8658-4FE0-ACD4-86BB2C1517B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC6298D2-8658-4FE0-ACD4-86BB2C1517B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C352C548-6FF6-4665-98FC-3F71D32DEC17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C352C548-6FF6-4665-98FC-3F71D32DEC17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C352C548-6FF6-4665-98FC-3F71D32DEC17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C352C548-6FF6-4665-98FC-3F71D32DEC17}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
